@@ -12,15 +12,15 @@ TEMPLATE_DEBUG = DEBUG
 
 # For MySQL remember to first do from a MySQL shell:
 # CREATE database foundationtargets;
-# GRANT ALL ON foundationtargets.* TO 'foundationtargets'@'localhost' IDENTIFIED BY 'foundationtargets';
+# GRANT ALL ON foundationtargets.* TO 'foundationtarg'@'localhost' IDENTIFIED BY 'foundationtarg';
 # FLUSH PRIVILEGES;
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'foundationtargets', # Or path to database file if using sqlite3.
-        'USER': 'foundationtargets', # Not used with sqlite3.
-        'PASSWORD': 'foundationtargets', # Not used with sqlite3.
+        'USER': 'foundationtarg', # Not used with sqlite3.
+        'PASSWORD': 'foundationtarg', # Not used with sqlite3.
         'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
@@ -84,7 +84,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    'preferences.context_processors.preferences_cp',
 )
 
 TEMPLATE_LOADERS = (
