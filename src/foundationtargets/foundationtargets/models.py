@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -40,7 +42,41 @@ class Determinant(models.Model):
 
     @property
     def gecko_result(self):
-        return [1,77]
+        if self.gecko_decorator is decorators.geck_o_meter:
+            now = datetime.datetime.now()
+            dt_month = datetime.date(now.year, now.month, 1)
+            try:
+                datapoint = self.datapoint_set.get(month=dt_month)
+            except DataPoint.DoesNotExist:
+                return [0, 0, 0]
+            else:                                
+                return [0, datapoint.actual, datapoint.target]
+
+        elif self.gecko_decorator is decorators.line_chart:
+            year = datetime.datetime.now().year
+            datapoints = self.datapoint_set.filter(month__year=year).order_by('month')
+            values = []
+            x_axis = []
+            v_min = 1000000000
+            v_max = 0
+            for dp in datapoints:
+                values.append(dp.actual)
+                x_axis.append(dp.month.strftime('%b'))
+                if dp.target < v_min:
+                    v_min = dp.target
+                if dp.actual < v_min:
+                    v_min = dp.actual
+                if dp.target > v_max:
+                    v_max = dp.target
+                if dp.actual > v_max:
+                    v_max = dp.actual
+            if v_min == 1000000000:
+                v_min = 0
+            y_axis = [v_min, v_max]
+            return (values, x_axis, y_axis)
+
+        else:
+            raise RuntimeError, "This Gecko decorator is not implemented"
 
     @property
     def gecko_decorator(self):
