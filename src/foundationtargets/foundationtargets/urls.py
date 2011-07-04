@@ -32,6 +32,12 @@ urlpatterns = patterns('',
         {},
         name='gecko_xml'
     ), 
+    url(
+        r'^admin/foundationtargets/determinant-datapoints-edit/(?P<id>[\d-]+)/$', 
+        'foundationtargets.views.determinant_datapoints_edit', 
+        {},
+        name='determinant_datapoints_edit'
+    ), 
 
 )
 

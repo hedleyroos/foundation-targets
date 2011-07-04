@@ -1,0 +1,85 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Edit determinant datapoints{% endblock %}
+
+{% block content %}
+
+    <style type="text/css">
+    table.determinant-edit input {
+        width: 50px;
+    }
+    </style>
+
+    <script type="text/javascript" src="/media/admin/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('input.determinant-year-total').click(function(){
+            var el = $(this);
+            if (el.val() == 'Total...')
+                el.val('');
+        });
+
+        $('input.determinant-year-total').change(function(){            
+            var outer_this = this;
+            var el = $(this);
+            var n = parseInt(el.val());
+            if (isNaN(n))
+                return;
+            var fraction = parseInt(n / 12);
+            var tr = el.parents('tr:first');
+            $('td input', tr).each(function(i){
+                if (this != outer_this)
+                    $(this).val(fraction);
+            });
+
+
+        });
+    });
+    </script>
+
+    <h1>Edit datapoints for {{ form.instance }}</h1>
+
+    <form action="." method="POST">
+        {% csrf_token %}
+        <input value="{{ form.instance.id }}" type="hidden" />
+
+        {% for year, datapoints in form.structure.items %}
+            <table class="determinant-edit">            
+                <tr>
+                    <td></td>
+                    {% for item in datapoints %}
+                        <td>{{ item.date.month }}/{{ year }}</td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td>Target</td>
+                    {% for item in datapoints %}
+                        <td>
+                            <input value="{{ item.target }}" type="text" name="month_{{ item.date.month }}_{{ item.date.year }}_target" />
+                        </td>
+                    {% endfor %}                
+                    <td>
+                        <input class="determinant-year-total" type="text" value="Total..." title="Enter a value that will be evenly distributed over the months" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Actual</td>
+                    {% for item in datapoints %}
+                        <td>
+                            <input value="{{ item.actual }}" type="text" name="month_{{ item.date.month }}_{{ item.date.year }}_actual" />
+                        </td>
+                    {% endfor %}                
+                    <td>
+                        <input class="determinant-year-total" type="text" value="Total..." title="Enter a value that will be evenly distributed over the months" />
+                    </td>
+                </tr>
+
+            </table>
+            <br />
+        {% endfor %}
+        
+        <input type="submit" value="Save" />
+    </form>
+
+{% endblock content %}

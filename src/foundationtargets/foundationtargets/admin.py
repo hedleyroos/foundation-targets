@@ -14,7 +14,9 @@ class DeterminantAdmin(admin.ModelAdmin):
     inlines = (DataPointInline,)
 
     def _actions(self, obj):
-        return '<a href="/gecko-xml/%s">View Gecko XML</a>' % obj.slug
+        return '''<a href="/gecko-xml/%s">View Gecko XML</a><br />
+        <a href="/admin/foundationtargets/determinant-datapoints-edit/%s">Edit datapoints</a>
+        ''' % (obj.slug, obj.id)
     _actions.short_description = 'Actions'
     _actions.allow_tags = True
 
