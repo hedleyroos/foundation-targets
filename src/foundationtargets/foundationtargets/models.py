@@ -60,7 +60,7 @@ class Determinant(models.Model):
             v_min = 1000000000
             v_max = 0
             for dp in datapoints:
-                values.append(dp.actual)
+                values.append([45, dp.actual])
                 x_axis.append(dp.month.strftime('%b'))
                 if dp.target < v_min:
                     v_min = dp.target
