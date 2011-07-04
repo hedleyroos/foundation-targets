@@ -1,0 +1,9 @@
+.installed.cfg
+bin/
+develop-eggs/
+downloads/
+media/
+nginx/
+parts/
+src/foundationtargets/foundationtargets.egg-info/
+supervisor/
