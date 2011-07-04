@@ -3,6 +3,7 @@
         "pk": 1, 
         "model": "foundationtargets.geckowidget", 
         "fields": {
+            "decorator_title": "geck_o_meter", 
             "title": "Geck-o-meter"
         }
     }, 
@@ -10,7 +11,44 @@
         "pk": 2, 
         "model": "foundationtargets.geckowidget", 
         "fields": {
+            "decorator_title": "line_chart", 
             "title": "Line chart"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "foundationtargets.determinant", 
+        "fields": {
+            "gecko_widget": 1, 
+            "slug": "direct-mobile-network-operator-partners", 
+            "title": "Direct mobile network operator partners"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "foundationtargets.determinant", 
+        "fields": {
+            "gecko_widget": 1, 
+            "slug": "ngos-using-the-platforms", 
+            "title": "NGOs using the platforms"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "foundationtargets.determinant", 
+        "fields": {
+            "gecko_widget": 2, 
+            "slug": "unique-panya-visitors", 
+            "title": "Unique Panya visitors"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "foundationtargets.determinant", 
+        "fields": {
+            "gecko_widget": 2, 
+            "slug": "unique-vumi-visitors", 
+            "title": "Unique Vumi visitors"
         }
     }
 ]

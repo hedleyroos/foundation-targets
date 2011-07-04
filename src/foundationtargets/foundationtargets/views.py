@@ -9,5 +9,5 @@ def gecko_xml(request, slug):
     determinant = get_object_or_404(Determinant, slug=slug)
     # Below is complex due to the way decorators are defined in 
     # django-geckoboard.
-    func = determinant.gecko_decorator(lambda request: determinant.gecko_xml)
+    func = determinant.gecko_decorator(lambda request: determinant.gecko_result)
     return HttpResponse(func(request)) 

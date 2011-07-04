@@ -26,6 +26,12 @@ urlpatterns = patterns('',
         },
         name='home'
     ),
+    url(
+        r'^gecko-xml/(?P<slug>[\w-]+)/$', 
+        'foundationtargets.views.gecko_xml', 
+        {},
+        name='gecko_xml'
+    ), 
 
 )
 

@@ -10,8 +10,13 @@ class DataPointInline(admin.TabularInline):
     extra = 6
 
 class DeterminantAdmin(admin.ModelAdmin):
-    list_display = ('title', 'gecko_widget')
+    list_display = ('title', 'gecko_widget', '_actions')
     inlines = (DataPointInline,)
+
+    def _actions(self, obj):
+        return '<a href="/gecko-xml/%s">View Gecko XML</a>' % obj.slug
+    _actions.short_description = 'Actions'
+    _actions.allow_tags = True
 
 class DataPointAdmin(admin.ModelAdmin):
     list_display = ('determinant', 'month', 'target', 'actual')
