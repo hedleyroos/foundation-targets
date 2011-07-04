@@ -1,0 +1,16 @@
+[
+    {
+        "pk": 1, 
+        "model": "foundationtargets.geckowidget", 
+        "fields": {
+            "title": "Geck-o-meter"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "foundationtargets.geckowidget", 
+        "fields": {
+            "title": "Line chart"
+        }
+    }
+]
