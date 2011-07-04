@@ -98,3 +98,10 @@ class DataPoint(models.Model):
     def __unicode__(self):
         return '%s > %s' % (self.determinant.title, self.month.strftime('%B %Y'))
 
+    def save(self, *args, **kwargs):
+        # Ensure month is really start of month
+        if self.month.day != 1:        
+            self.month = datetime.date(self.month.year, self.month.month, 1)
+        super(DataPoint, self).save(*args, **kwargs)
+
+
