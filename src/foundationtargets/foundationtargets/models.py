@@ -73,6 +73,8 @@ class Determinant(models.Model):
             if v_min == 1000000000:
                 v_min = 0
             y_axis = [v_min, v_max]
+            if not values:
+                values = [0]
             return (values, x_axis, y_axis)
 
         else:
