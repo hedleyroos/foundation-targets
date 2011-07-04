@@ -50,7 +50,7 @@ class Determinant(models.Model):
             except DataPoint.DoesNotExist:
                 return [0, 0, 0]
             else:                                
-                return [0, datapoint.actual, datapoint.target]
+                return [datapoint.actual, 0, datapoint.target]
 
         elif self.gecko_decorator is decorators.line_chart:
             year = datetime.datetime.now().year
