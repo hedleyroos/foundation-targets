@@ -53,10 +53,13 @@ class Determinant(models.Model):
                 return [datapoint.actual, 0, datapoint.target]
 
         elif self.gecko_decorator is decorators.line_chart:
-            year = datetime.datetime.now().year
-            datapoints = self.datapoint_set.filter(month__year=year).order_by('month')
+            #year = datetime.datetime.now().year
+            #datapoints = self.datapoint_set.filter(month__year=year).order_by('month')
+            # Only datapoints for which both target and actual are not zero
+            datapoints = self.datapoint_set.filter(target__gt=0, actual__gt=0).order_by('month')
             values = []
             x_axis = []
+            y_axis = []
             v_min = 1000000000
             v_max = 0
             total_target = 0
@@ -74,9 +77,10 @@ class Determinant(models.Model):
                     v_max = dp.actual
             if v_min == 1000000000:
                 v_min = 0
-            y_axis = [v_min, total_target/12, v_max]
             if not values:
                 values = [0]
+            else:
+                y_axis = [v_min, total_target/len(datapoints), v_max]
             return (values, x_axis, y_axis)
 
         else:
